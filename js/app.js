@@ -43,27 +43,31 @@ var app = {
     let currentCell = document.querySelector(".cellCurrent");
     let cells = document.querySelectorAll(".cell");
 
-    let rankedCell = [];
-
-    for (let cell in cells) {
-      rankedCell.push(cell);
-    }
+    //? Comment atteindre une case précise :
+    let rankedCells = Array.from(cells);
+    let actualRank = rankedCells.indexOf(currentCell);
+    //console.log(actualRank);
 
     //! 2) Par défaut, le curseur à la class -right dans la cellule de départ
     currentCell.classList.add("cellCurrent-right");
-    console.log(currentCell);
-    console.log(currentCell.classList.contains("cellCurrent"));
-    console.log(currentCell.classList);
+
+    //! 3) On reconnait maintenant le sens de la flèche
+
+    //On va donc pouvoir modifier le rang de la cell ayant la flèche avec la variable actualRank
+    // 1) on fait varier l'alctual rank
 
     if (currentCell.classList.contains("cellCurrent-top")) {
-      console.log("on est au top");
+      actualRank -= 6;
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
-      console.log("la tête en bas");
+      actualRank += 6;
     } else if (currentCell.classList.contains("cellCurrent-left")) {
-      console.log("virage à gauche");
+      actualRank -= 1;
     } else if (currentCell.classList.contains("cellCurrent-right")) {
-      console.log("virage à droite");
+      actualRank += 1;
     }
+
+    // puis 2) on va chercher la cell de ce nouvel index
+    let currentCell = rankedCells[actualRank];
   },
 
   handleLaunchScriptButton: function () {
