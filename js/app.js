@@ -12,6 +12,7 @@ var app = {
 
     console.log(container);
 
+    //! 1) on dessine le tableau
     for (let i = 0; i < 4; i++) {
       let cellRow = document.createElement("div");
       cellRow.classList.add("cellRow");
@@ -23,6 +24,14 @@ var app = {
         //console.log(cell);
       }
     }
+
+    //! 2) On dessine les cases départ et arrivée
+    let cells = document.querySelectorAll(".cell");
+    let startCell = cells[0];
+    startCell.classList.add("cellStart");
+    console.log(cells.length);
+    let endCell = cells[cells.length - 1];
+    endCell.classList.add("cellEnd");
   },
   handleLaunchScriptButton: function () {
     // TODO
