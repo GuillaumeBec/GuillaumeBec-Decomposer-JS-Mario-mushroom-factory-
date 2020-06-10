@@ -6,8 +6,11 @@ var app = {
 
     app.drawBoard();
     app.moveForward();
+    app.moveForward();
+    //app.moveForward();
     // Event listeners - TODO
   },
+
   drawBoard: function () {
     let container = document.querySelector("#board");
 
@@ -33,6 +36,8 @@ var app = {
     startCell.classList.add("cellStart");
     //! 3) le curseur commence ici
     startCell.classList.add("cellCurrent");
+    //! II) 2) Par défaut, le curseur à la class -right dans la cellule de départ
+    startCell.classList.add("cellCurrent-right");
     //console.log(cells.length);
     let endCell = cells[cells.length - 1];
     endCell.classList.add("cellEnd");
@@ -41,15 +46,13 @@ var app = {
   moveForward: function () {
     //! 1) Collectionnons les cellules dans une tableau pour pouvoir naviguer de l'une à l'autre
     let currentCell = document.querySelector(".cellCurrent");
+    console.log(currentCell);
     let cells = document.querySelectorAll(".cell");
 
     //? Comment atteindre une case précise :
     let rankedCells = Array.from(cells);
     let actualRank = rankedCells.indexOf(currentCell);
     //console.log(actualRank);
-
-    //! 2) Par défaut, le curseur à la class -right dans la cellule de départ
-    currentCell.classList.add("cellCurrent-right");
 
     //! 3) On reconnait maintenant le sens de la flèche
 
@@ -63,11 +66,16 @@ var app = {
     } else if (currentCell.classList.contains("cellCurrent-left")) {
       actualRank -= 1;
     } else if (currentCell.classList.contains("cellCurrent-right")) {
+      console.log("ok");
       actualRank += 1;
     }
 
-    // puis 2) on va chercher la cell de ce nouvel index
-    let currentCell = rankedCells[actualRank];
+    currentCell.classList.remove("cellCurrent");
+    // puis on va chercher la cell de ce nouvel index et lui transférer la class
+    currentCell = rankedCells[actualRank];
+    currentCell.classList.add("cellCurrent-right");
+    currentCell.classList.add("cellCurrent");
+    console.log(currentCell);
   },
 
   handleLaunchScriptButton: function () {
@@ -79,6 +87,7 @@ var app = {
       app.codeLineLoop(codeLines, 0);
     }, 2000);
   },
+
   codeLineLoop: function (codeLines, index) {
     // Getting currentLine
     var currentLine = codeLines[index];
