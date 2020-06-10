@@ -7,7 +7,9 @@ var app = {
     app.drawBoard();
     app.moveForward();
     app.moveForward();
-    //app.moveForward();
+    app.turnRight();
+    app.moveForward();
+
     // Event listeners - TODO
   },
 
@@ -46,7 +48,7 @@ var app = {
   moveForward: function () {
     //! 1) Collectionnons les cellules dans une tableau pour pouvoir naviguer de l'une à l'autre
     let currentCell = document.querySelector(".cellCurrent");
-    console.log(currentCell);
+    //console.log(currentCell);
     let cells = document.querySelectorAll(".cell");
 
     //? Comment atteindre une case précise :
@@ -55,32 +57,77 @@ var app = {
     //console.log(actualRank);
 
     //! 3) On reconnait maintenant le sens de la flèche
-
     //On va donc pouvoir modifier le rang de la cell ayant la flèche avec la variable actualRank
     // 1) on fait varier l'alctual rank
+    // puis on va chercher la cell de ce nouvel index et lui transférer la class
 
     if (currentCell.classList.contains("cellCurrent-top")) {
       actualRank -= 6;
+      console.log("ok top");
+      actualRank += 1;
+      currentCell.classList.remove("cellCurrent");
+      currentCell = rankedCells[actualRank];
+      currentCell.classList.add("cellCurrent-top");
+      currentCell.classList.add("cellCurrent");
+      //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
       actualRank += 6;
+      console.log("ok bottom");
+      actualRank += 1;
+      currentCell.classList.remove("cellCurrent");
+      currentCell = rankedCells[actualRank];
+      currentCell.classList.add("cellCurrent-bottom");
+      currentCell.classList.add("cellCurrent");
+      console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-left")) {
       actualRank -= 1;
-    } else if (currentCell.classList.contains("cellCurrent-right")) {
-      console.log("ok");
+      console.log("ok left");
       actualRank += 1;
+      currentCell.classList.remove("cellCurrent");
+      currentCell = rankedCells[actualRank];
+      currentCell.classList.add("cellCurrent-left");
+      currentCell.classList.add("cellCurrent");
+      //console.log(currentCell);
+    } else if (currentCell.classList.contains("cellCurrent-right")) {
+      console.log("ok right");
+      actualRank += 1;
+      currentCell.classList.remove("cellCurrent");
+      currentCell = rankedCells[actualRank];
+      currentCell.classList.add("cellCurrent-right");
+      currentCell.classList.add("cellCurrent");
+      //console.log(currentCell);
     }
+  },
 
-    currentCell.classList.remove("cellCurrent");
-    // puis on va chercher la cell de ce nouvel index et lui transférer la class
-    currentCell = rankedCells[actualRank];
-    currentCell.classList.add("cellCurrent-right");
-    currentCell.classList.add("cellCurrent");
-    console.log(currentCell);
+  turnRight: function () {
+    let currentCell = document.querySelector(".cellCurrent");
+    //console.log(currentCell);
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+  },
+
+  turnLeft: function () {
+    let currentCell = document.querySelector(".cellCurrent");
+    //console.log(currentCell);
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
+    if (currentCell.classList.contains("cellCurrent-right")) {
+    }
   },
 
   handleLaunchScriptButton: function () {
     // TODO
-
+    //! On récupère le texcontent de la div dans son attribue value
     // TODO : get all lines as an array
 
     window.setTimeout(function () {
