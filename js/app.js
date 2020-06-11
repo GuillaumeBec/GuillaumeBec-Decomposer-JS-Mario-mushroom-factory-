@@ -5,12 +5,17 @@ var app = {
     // TODO
 
     app.drawBoard();
-    app.moveForward();
+
     //app.moveForward();
+
+    //app.moveForward();
+
     app.turnRight();
+
     app.moveForward();
-    app.turnRight();
-    app.moveForward();
+
+    app.turnLeft();
+    //app.moveForward();
     app.turnRight();
 
     // Event listeners - TODO
@@ -125,13 +130,17 @@ var app = {
     let currentCell = document.querySelector(".cellCurrent");
     //console.log(currentCell);
     if (currentCell.classList.contains("cellCurrent-right")) {
-      currentCell.classList.add();
-    } else if (currentCell.classList.contains("cellCurrent-right")) {
-      currentCell.classList.add();
-    } else if (currentCell.classList.contains("cellCurrent-right")) {
-      currentCell.classList.add();
-    } else if (currentCell.classList.contains("cellCurrent-right")) {
-      currentCell.classList.add();
+      currentCell.classList.add("cellCurrent-top");
+      currentCell.classList.remove("cellCurrent-right");
+    } else if (currentCell.classList.contains("cellCurrent-bottom")) {
+      currentCell.classList.add("cellCurrent-left");
+      currentCell.classList.remove("cellCurrent-bottom");
+    } else if (currentCell.classList.contains("cellCurrent-top")) {
+      currentCell.classList.add("cellCurrent-right");
+      currentCell.classList.remove("cellCurrent-top");
+    } else if (currentCell.classList.contains("cellCurrent-left")) {
+      currentCell.classList.add("cellCurrent-bottom");
+      currentCell.classList.remove("cellCurrent-left");
     }
   },
 
