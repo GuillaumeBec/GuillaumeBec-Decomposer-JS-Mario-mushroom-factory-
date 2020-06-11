@@ -6,9 +6,12 @@ var app = {
 
     app.drawBoard();
     app.moveForward();
+    //app.moveForward();
+    app.turnRight();
     app.moveForward();
     app.turnRight();
     app.moveForward();
+    app.turnRight();
 
     // Event listeners - TODO
   },
@@ -62,7 +65,7 @@ var app = {
     // puis on va chercher la cell de ce nouvel index et lui transférer la class
 
     if (currentCell.classList.contains("cellCurrent-top")) {
-      actualRank -= 6;
+      actualRank -= 5;
       console.log("ok top");
       actualRank += 1;
       currentCell.classList.remove("cellCurrent");
@@ -71,7 +74,7 @@ var app = {
       currentCell.classList.add("cellCurrent");
       //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
-      actualRank += 6;
+      actualRank += 5;
       console.log("ok bottom");
       actualRank += 1;
       currentCell.classList.remove("cellCurrent");
@@ -95,20 +98,26 @@ var app = {
       currentCell = rankedCells[actualRank];
       currentCell.classList.add("cellCurrent-right");
       currentCell.classList.add("cellCurrent");
-      //console.log(currentCell);
+      console.log(currentCell);
     }
   },
 
   turnRight: function () {
     let currentCell = document.querySelector(".cellCurrent");
-    //console.log(currentCell);
+    console.log(currentCell);
     if (currentCell.classList.contains("cellCurrent-right")) {
-    }
-    if (currentCell.classList.contains("cellCurrent-right")) {
-    }
-    if (currentCell.classList.contains("cellCurrent-right")) {
-    }
-    if (currentCell.classList.contains("cellCurrent-right")) {
+      currentCell.classList.add("cellCurrent-bottom");
+      currentCell.classList.remove("cellCurrent-right");
+      console.log(currentCell);
+    } else if (currentCell.classList.contains("cellCurrent-bottom")) {
+      currentCell.classList.add("cellCurrent-left");
+      currentCell.classList.remove("cellCurrent-bottom");
+    } else if (currentCell.classList.contains("cellCurrent-top")) {
+      currentCell.classList.add("cellCurrent-right");
+      currentCell.classList.remove("cellCurrent-top");
+    } else if (currentCell.classList.contains("cellCurrent-left")) {
+      currentCell.classList.add("cellCurrent-top");
+      currentCell.classList.remove("cellCurrent-left");
     }
   },
 
@@ -116,12 +125,13 @@ var app = {
     let currentCell = document.querySelector(".cellCurrent");
     //console.log(currentCell);
     if (currentCell.classList.contains("cellCurrent-right")) {
-    }
-    if (currentCell.classList.contains("cellCurrent-right")) {
-    }
-    if (currentCell.classList.contains("cellCurrent-right")) {
-    }
-    if (currentCell.classList.contains("cellCurrent-right")) {
+      currentCell.classList.add();
+    } else if (currentCell.classList.contains("cellCurrent-right")) {
+      currentCell.classList.add();
+    } else if (currentCell.classList.contains("cellCurrent-right")) {
+      currentCell.classList.add();
+    } else if (currentCell.classList.contains("cellCurrent-right")) {
+      currentCell.classList.add();
     }
   },
 
