@@ -1,24 +1,36 @@
-var app = {
+let app = {
   init: function () {
     console.log("init");
-
+    multimedia.init();
     // TODO
 
     app.drawBoard();
 
-    //app.moveForward();
-
-    //app.moveForward();
+    /*app.moveForward();
+    app.moveForward();
+    app.moveForward();
+    app.moveForward();
+    app.moveForward();
 
     app.turnRight();
 
     app.moveForward();
-
-    app.turnLeft();
-    //app.moveForward();
-    app.turnRight();
+    app.moveForward();
+    app.moveForward();*/
 
     // Event listeners - TODO
+    //!==================================================Gestion des boutons de lancement et de réinitialisation======
+    let scriptButton = document.querySelector("#launchScript");
+    scriptButton.addEventListener("click", app.handleLaunchScriptButton);
+
+    let resetButton = document.createElement("button");
+    resetButton.id = "launchScript";
+    resetButton.textContent = "Reset";
+    resetButton.addEventListener("click", app.resetGameBoard);
+
+    scriptButton.after(resetButton);
+
+    //!================================================================================================================
   },
 
   drawBoard: function () {
@@ -146,17 +158,28 @@ var app = {
 
   handleLaunchScriptButton: function () {
     // TODO
+    console.log("lire le script");
     //! On récupère le texcontent de la div dans son attribue value
+    let scriptText = document.querySelector("#userCode").value;
+    console.log(scriptText);
     // TODO : get all lines as an array
+
+    let codeLines = [];
+    codeLines.push(scriptText.split(/\r?\n/));
+    console.log(codeLines);
 
     window.setTimeout(function () {
       app.codeLineLoop(codeLines, 0);
     }, 2000);
   },
 
+  resetGameBoard: function () {
+    console.log("ici on reset");
+  },
+
   codeLineLoop: function (codeLines, index) {
     // Getting currentLine
-    var currentLine = codeLines[index];
+    let currentLine = codeLines[index];
     console.log(currentLine);
 
     // Increment
@@ -174,6 +197,7 @@ var app = {
       }, 1000);
     }
   },
+
   checkSuccess: function () {
     // TODO display if the game is won or not
   },
