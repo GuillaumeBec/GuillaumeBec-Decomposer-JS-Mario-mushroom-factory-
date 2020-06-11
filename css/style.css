@@ -1,11 +1,36 @@
 body {
   padding: 1rem;
   font-family: Helvetica, sans-serif;
+  background-image: url('../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position-y: 20vh;
+}
+
+.header {
+  text-align: center;
+  display: block;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.sub-header{
+  display: flex;
+  margin-top: 1rem;
 }
 
 .label {
   font-weight: bold;
   margin: 1rem 0;
+}
+
+.caracter {
+  position: absolute;
+  width: 6rem;
+  position: absolute;
+  margin-left: 70vw;
+  margin-top: -13.5vh;
 }
 
 #userCode {
@@ -35,7 +60,8 @@ body {
   margin-top: 1rem;
   display: inline-block;
   background-color: black;
-  border: 1px solid black;
+  border: 6px solid blanchedalmond;
+  border-radius: 0.5em;
 }
 
 .cellRow {
@@ -43,7 +69,7 @@ body {
 }
 
 .cell {
-  background-color: lightgrey;
+  background-color: white;
   width: 3rem;
   height: 3rem;
   display: flex;

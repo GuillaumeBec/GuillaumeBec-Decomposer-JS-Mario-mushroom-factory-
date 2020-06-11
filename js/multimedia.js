@@ -2,7 +2,6 @@ const audio = new Audio('./assets/A Secret Course - Super Mario Sunshine.mp3');
 
 let multimedia = {
 
-
     init: function () {
         multimedia.sound();
     },
@@ -18,11 +17,13 @@ let multimedia = {
 
     play: function () {
         audio.play();
+        audio.volume= 0.6;
+        audio.loop= true;
         console.log(audio);
     },
 
     pause: function () {
-        audio.pause;
+        audio.pause();
         console.log(audio);
     }
 }

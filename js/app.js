@@ -6,17 +6,19 @@ let app = {
 
     app.drawBoard();
 
-    /*app.moveForward();
     app.moveForward();
     app.moveForward();
-    app.moveForward();
+    
     app.moveForward();
 
     app.turnRight();
+  
+    app.moveForward();
 
+
+    app.turnLeft();
     app.moveForward();
     app.moveForward();
-    app.moveForward();*/
 
     // Event listeners - TODO
     //!==================================================Gestion des boutons de lancement et de réinitialisation======
@@ -175,6 +177,17 @@ let app = {
 
   resetGameBoard: function () {
     console.log("ici on reset");
+    let currentCell = document.querySelector(".cellCurrent");
+    currentCell.classList.remove("cellCurrent");
+    let cells = document.querySelectorAll('.cell');
+    for(let index = 0; index < cells.length ; index++) {
+      console.log(cells[index]);
+      cells[index].classList.remove('cellCurrent-right','cellCurrent-bottom','cellCurrent-left','cellCurrent-top', 'cellCurrent');
+    }
+    let startCell = document.querySelector(".cellStart");
+    startCell.classList.add("cellCurrent");
+    startCell.classList.add("cellCurrent-right");
+    
   },
 
   codeLineLoop: function (codeLines, index) {
