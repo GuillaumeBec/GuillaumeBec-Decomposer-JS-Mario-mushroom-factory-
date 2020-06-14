@@ -6,19 +6,19 @@ let app = {
 
     app.drawBoard();
 
-    app.moveForward();
-    app.moveForward();
-    
+    /*app.moveForward();
+    //app.moveForward();
+
     app.moveForward();
 
     app.turnRight();
-  
+
     app.moveForward();
 
 
     app.turnLeft();
     app.moveForward();
-    app.moveForward();
+    app.moveForward();*/
 
     // Event listeners - TODO
     //!==================================================Gestion des boutons de lancement et de réinitialisation======
@@ -85,7 +85,7 @@ let app = {
 
     if (currentCell.classList.contains("cellCurrent-top")) {
       actualRank -= 5;
-      console.log("ok top");
+      //console.log("ok top");
       actualRank += 1;
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
@@ -94,16 +94,16 @@ let app = {
       //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
       actualRank += 5;
-      console.log("ok bottom");
+      //console.log("ok bottom");
       actualRank += 1;
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
       currentCell.classList.add("cellCurrent-bottom");
       currentCell.classList.add("cellCurrent");
-      console.log(currentCell);
+      //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-left")) {
       actualRank -= 1;
-      console.log("ok left");
+      //console.log("ok left");
       actualRank += 1;
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
@@ -111,23 +111,23 @@ let app = {
       currentCell.classList.add("cellCurrent");
       //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-right")) {
-      console.log("ok right");
+      //console.log("ok right");
       actualRank += 1;
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
       currentCell.classList.add("cellCurrent-right");
       currentCell.classList.add("cellCurrent");
-      console.log(currentCell);
+      //console.log(currentCell);
     }
   },
 
   turnRight: function () {
     let currentCell = document.querySelector(".cellCurrent");
-    console.log(currentCell);
+    //console.log(currentCell);
     if (currentCell.classList.contains("cellCurrent-right")) {
       currentCell.classList.add("cellCurrent-bottom");
       currentCell.classList.remove("cellCurrent-right");
-      console.log(currentCell);
+      //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
       currentCell.classList.add("cellCurrent-left");
       currentCell.classList.remove("cellCurrent-bottom");
@@ -147,10 +147,10 @@ let app = {
       currentCell.classList.add("cellCurrent-top");
       currentCell.classList.remove("cellCurrent-right");
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
-      currentCell.classList.add("cellCurrent-left");
+      currentCell.classList.add("cellCurrent-right");
       currentCell.classList.remove("cellCurrent-bottom");
     } else if (currentCell.classList.contains("cellCurrent-top")) {
-      currentCell.classList.add("cellCurrent-right");
+      currentCell.classList.add("cellCurrent-left");
       currentCell.classList.remove("cellCurrent-top");
     } else if (currentCell.classList.contains("cellCurrent-left")) {
       currentCell.classList.add("cellCurrent-bottom");
@@ -160,15 +160,15 @@ let app = {
 
   handleLaunchScriptButton: function () {
     // TODO
-    console.log("lire le script");
+    //console.log("lire le script");
     //! On récupère le texcontent de la div dans son attribue value
     let scriptText = document.querySelector("#userCode").value;
-    console.log(scriptText);
+    //console.log(scriptText);
     // TODO : get all lines as an array
 
     let codeLines = [];
     codeLines.push(scriptText.split(/\r?\n/));
-    console.log(codeLines);
+    //console.log(codeLines);
 
     window.setTimeout(function () {
       app.codeLineLoop(codeLines, 0);
@@ -176,43 +176,69 @@ let app = {
   },
 
   resetGameBoard: function () {
-    console.log("ici on reset");
+    //console.log("ici on reset");
     let currentCell = document.querySelector(".cellCurrent");
     currentCell.classList.remove("cellCurrent");
     let cells = document.querySelectorAll('.cell');
-    for(let index = 0; index < cells.length ; index++) {
-      console.log(cells[index]);
-      cells[index].classList.remove('cellCurrent-right','cellCurrent-bottom','cellCurrent-left','cellCurrent-top', 'cellCurrent');
+    for (let index = 0; index < cells.length; index++) {
+      //console.log(cells[index]);
+      cells[index].classList.remove('cellCurrent-right', 'cellCurrent-bottom', 'cellCurrent-left', 'cellCurrent-top', 'cellCurrent');
     }
     let startCell = document.querySelector(".cellStart");
     startCell.classList.add("cellCurrent");
     startCell.classList.add("cellCurrent-right");
-    
+
   },
 
   codeLineLoop: function (codeLines, index) {
-    // Getting currentLine
     let currentLine = codeLines[index];
+
     console.log(currentLine);
 
-    // Increment
-    index++;
 
-    // if still a line to interpret
-    if (index < codeLines.length) {
-      // Recall same method (=> make a loop)
-      window.setTimeout(function () {
-        app.codeLineLoop(codeLines, index);
-      }, 1000);
-    } else {
+    if (currentLine !== undefined) {
+
+      for (index = 0; index < currentLine.length; index++) {
+
+        console.log(index);
+        // Getting currentLine
+        // if still a line to interpret
+
+        if (currentLine[index].includes('forward')) {
+          console.log('forward');
+          app.moveForward();
+        } else if (currentLine[index].includes('right')) {
+          console.log('right')
+          app.turnRight();
+        } else if (currentLine[index].includes('left')) {
+          console.log('left')
+          app.turnLeft();
+        }
+        // Recall same method (=> make a loop)
+        window.setTimeout(function () {
+          app.codeLineLoop(codeLines, index);
+        }, 1000);
+      }
       window.setTimeout(function () {
         app.checkSuccess();
-      }, 1000);
+      }, 1000)
+
     }
   },
 
+
   checkSuccess: function () {
     // TODO display if the game is won or not
+
+    let endCell = document.querySelector(".cellEnd");
+    console.log(endCell);
+    if (endCell.classList.contains("cellCurrent")) {
+      console.log("you win");
+
+    } else {
+      console.log("you lose");
+    }
+
   },
 };
 

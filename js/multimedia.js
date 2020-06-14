@@ -8,17 +8,17 @@ let multimedia = {
     sound: function () {
 
         const playButton = document.querySelector(".playButton");
-        console.log(playButton);
+        //console.log(playButton);
         const pauseButton = document.querySelector(".pauseButton");
-        console.log(pauseButton);
+        //console.log(pauseButton);
         playButton.addEventListener("click", multimedia.play);
         pauseButton.addEventListener("click", multimedia.pause);
     },
 
     play: function () {
         audio.play();
-        audio.volume= 0.6;
-        audio.loop= true;
+        audio.volume = 0.6;
+        audio.loop = true;
         console.log(audio);
     },
 
