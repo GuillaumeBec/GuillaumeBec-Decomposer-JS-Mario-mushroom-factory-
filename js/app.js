@@ -94,18 +94,18 @@ let app = {
     // puis on va chercher la cell de ce nouvel index et lui transférer la class
 
     if (currentCell.classList.contains("cellCurrent-top")) {
-      actualRank -= 5;
+      actualRank -= 6;
       //console.log("ok top");
-      actualRank += 1;
+
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
       currentCell.classList.add("cellCurrent-top");
       currentCell.classList.add("cellCurrent");
       //console.log(currentCell);
     } else if (currentCell.classList.contains("cellCurrent-bottom")) {
-      actualRank += 5;
+      actualRank += 6;
       //console.log("ok bottom");
-      actualRank += 1;
+
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
       currentCell.classList.add("cellCurrent-bottom");
@@ -114,7 +114,7 @@ let app = {
     } else if (currentCell.classList.contains("cellCurrent-left")) {
       actualRank -= 1;
       //console.log("ok left");
-      actualRank += 1;
+
       currentCell.classList.remove("cellCurrent");
       currentCell = rankedCells[actualRank];
       currentCell.classList.add("cellCurrent-left");
