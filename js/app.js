@@ -54,16 +54,26 @@ let app = {
       }
     }
 
-    //! 2) On dessine les cases départ et arrivée
+    //! 2) On dessine les cases départ et arrivée, de manière aléatoire
     let cells = document.querySelectorAll(".cell");
-    let startCell = cells[0];
+    //let startCell = cells[0];
+    min = Math.ceil(0);
+    max = Math.floor(cells.length);
+    let startCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
+    console.log(startCell);
     startCell.classList.add("cellStart");
     //! 3) le curseur commence ici
     startCell.classList.add("cellCurrent");
     //! II) 2) Par défaut, le curseur à la class -right dans la cellule de départ
     startCell.classList.add("cellCurrent-right");
-    //console.log(cells.length);
-    let endCell = cells[cells.length - 1];
+
+    let endCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
+
+
+    do { // On fait en sorte que les deux cases ne se cumulent pas l'une sur l'autre
+      let endCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
+    } while (endCell == startCell);
+    console.log(endCell);
     endCell.classList.add("cellEnd");
   },
 
@@ -176,7 +186,9 @@ let app = {
   },
 
   resetGameBoard: function () {
-    //console.log("ici on reset");
+    let scriptText = document.querySelector("#userCode");
+    //console.log(scriptText);
+    scriptText.value = "";
     let currentCell = document.querySelector(".cellCurrent");
     currentCell.classList.remove("cellCurrent");
     let cells = document.querySelectorAll('.cell');
