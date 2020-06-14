@@ -15,7 +15,7 @@ body {
   font-size: 2rem;
 }
 
-.sub-header{
+.sub-header {
   display: flex;
   margin-top: 1rem;
 }
@@ -28,7 +28,6 @@ body {
 .caracter {
   position: absolute;
   width: 6rem;
-  position: absolute;
   margin-left: 70vw;
   margin-top: -13.5vh;
 }
@@ -54,7 +53,6 @@ body {
   border-radius: 0.3rem;
   cursor: pointer;
 }
-
 
 #board {
   margin-top: 1rem;

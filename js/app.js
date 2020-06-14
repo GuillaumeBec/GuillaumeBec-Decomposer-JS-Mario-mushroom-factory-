@@ -69,7 +69,6 @@ let app = {
 
     let endCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
 
-
     do { // On fait en sorte que les deux cases ne se cumulent pas l'une sur l'autre
       let endCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
     } while (endCell == startCell);
@@ -86,49 +85,70 @@ let app = {
     //? Comment atteindre une case précise :
     let rankedCells = Array.from(cells);
     let actualRank = rankedCells.indexOf(currentCell);
-    //console.log(actualRank);
 
     //! 3) On reconnait maintenant le sens de la flèche
     //On va donc pouvoir modifier le rang de la cell ayant la flèche avec la variable actualRank
     // 1) on fait varier l'alctual rank
     // puis on va chercher la cell de ce nouvel index et lui transférer la class
-
-    if (currentCell.classList.contains("cellCurrent-top")) {
-      actualRank -= 6;
-      //console.log("ok top");
-
-      currentCell.classList.remove("cellCurrent");
-      currentCell = rankedCells[actualRank];
-      currentCell.classList.add("cellCurrent-top");
-      currentCell.classList.add("cellCurrent");
-      //console.log(currentCell);
-    } else if (currentCell.classList.contains("cellCurrent-bottom")) {
-      actualRank += 6;
-      //console.log("ok bottom");
-
-      currentCell.classList.remove("cellCurrent");
-      currentCell = rankedCells[actualRank];
-      currentCell.classList.add("cellCurrent-bottom");
-      currentCell.classList.add("cellCurrent");
-      //console.log(currentCell);
-    } else if (currentCell.classList.contains("cellCurrent-left")) {
-      actualRank -= 1;
-      //console.log("ok left");
-
-      currentCell.classList.remove("cellCurrent");
-      currentCell = rankedCells[actualRank];
-      currentCell.classList.add("cellCurrent-left");
-      currentCell.classList.add("cellCurrent");
-      //console.log(currentCell);
-    } else if (currentCell.classList.contains("cellCurrent-right")) {
-      //console.log("ok right");
-      actualRank += 1;
-      currentCell.classList.remove("cellCurrent");
-      currentCell = rankedCells[actualRank];
-      currentCell.classList.add("cellCurrent-right");
-      currentCell.classList.add("cellCurrent");
-      //console.log(currentCell);
+    if (currentCell != undefined) {
+      if (currentCell.classList.contains("cellCurrent-top")) {
+        if (actualRank < 6) {
+          console.log('out');
+          let failSquare = document.querySelector("#fails");
+          failSquare.textContent += "Sorti du cadre !";
+          //currentCell = startCell;
+          app.resetGameBoard();
+        } else {
+          actualRank -= 6;
+          //console.log("ok top");
+          currentCell.classList.remove("cellCurrent");
+          currentCell = rankedCells[actualRank];
+          currentCell.classList.add("cellCurrent-top");
+          currentCell.classList.add("cellCurrent");
+          //console.log(currentCell);
+        }
+      } else if (currentCell.classList.contains("cellCurrent-bottom")) {
+        if (actualRank > 18) {
+          console.log('out');
+          let failSquare = document.querySelector("#fails");
+          failSquare.textContent += "Sorti du cadre !";
+          //currentCell = startCell;
+          app.resetGameBoard();
+        } else {
+          actualRank += 6;
+          //console.log("ok bottom");
+          currentCell.classList.remove("cellCurrent");
+          currentCell = rankedCells[actualRank];
+          currentCell.classList.add("cellCurrent-bottom");
+          currentCell.classList.add("cellCurrent");
+          //console.log(currentCell);
+        }
+      } else if (currentCell.classList.contains("cellCurrent-left")) {
+        actualRank -= 1;
+        //console.log("ok left");
+        currentCell.classList.remove("cellCurrent");
+        currentCell = rankedCells[actualRank];
+        currentCell.classList.add("cellCurrent-left");
+        currentCell.classList.add("cellCurrent");
+        //console.log(currentCell);
+      } else if (currentCell.classList.contains("cellCurrent-right")) {
+        //console.log("ok right");
+        actualRank += 1;
+        currentCell.classList.remove("cellCurrent");
+        currentCell = rankedCells[actualRank];
+        currentCell.classList.add("cellCurrent-right");
+        currentCell.classList.add("cellCurrent");
+        //console.log(currentCell);
+      }
+    } else {
+      console.log('out');
+      let failSquare = document.querySelector("#fails");
+      failSquare.textContent += "Sorti du cadre !";
+      app.resetGameBoard();
+      app.drawBoard();
     }
+    console.log(actualRank);
+    console.log(currentCell);
   },
 
   turnRight: function () {
@@ -187,32 +207,30 @@ let app = {
 
   resetGameBoard: function () {
     let scriptText = document.querySelector("#userCode");
-    //console.log(scriptText);
+    console.log(scriptText);
     scriptText.value = "";
     let currentCell = document.querySelector(".cellCurrent");
+    console.log(currentCell);
     currentCell.classList.remove("cellCurrent");
     let cells = document.querySelectorAll('.cell');
     for (let index = 0; index < cells.length; index++) {
-      //console.log(cells[index]);
+      console.log(cells[index]);
       cells[index].classList.remove('cellCurrent-right', 'cellCurrent-bottom', 'cellCurrent-left', 'cellCurrent-top', 'cellCurrent');
     }
     let startCell = document.querySelector(".cellStart");
     startCell.classList.add("cellCurrent");
     startCell.classList.add("cellCurrent-right");
-
   },
 
   codeLineLoop: function (codeLines, index) {
     let currentLine = codeLines[index];
-
-    console.log(currentLine);
-
+    //console.log(currentLine);
 
     if (currentLine !== undefined) {
 
       for (index = 0; index < currentLine.length; index++) {
 
-        console.log(index);
+        //console.log(index);
         // Getting currentLine
         // if still a line to interpret
 
