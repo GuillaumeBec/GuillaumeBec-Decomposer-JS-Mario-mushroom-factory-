@@ -60,7 +60,7 @@ let app = {
     min = Math.ceil(0);
     max = Math.floor(cells.length);
     let startCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
-    console.log(startCell);
+    //console.log(startCell);
     startCell.classList.add("cellStart");
     //! 3) le curseur commence ici
     startCell.classList.add("cellCurrent");
@@ -72,7 +72,7 @@ let app = {
     do { // On fait en sorte que les deux cases ne se cumulent pas l'une sur l'autre
       let endCell = cells[Math.floor(Math.random() * (max - min - 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
     } while (endCell == startCell);
-    console.log(endCell);
+    //console.log(endCell);
     endCell.classList.add("cellEnd");
   },
 
@@ -96,8 +96,10 @@ let app = {
           console.log('out');
           let failSquare = document.querySelector("#fails");
           failSquare.textContent += "Sorti du cadre !";
-          //currentCell = startCell;
           app.resetGameBoard();
+          let board = document.querySelector('#board');
+          board.innerHTML = "";
+          app.drawBoard();
         } else {
           actualRank -= 6;
           //console.log("ok top");
@@ -114,6 +116,9 @@ let app = {
           failSquare.textContent += "Sorti du cadre !";
           //currentCell = startCell;
           app.resetGameBoard();
+          let board = document.querySelector('#board');
+          board.innerHTML = "";
+          app.drawBoard();
         } else {
           actualRank += 6;
           //console.log("ok bottom");
@@ -147,8 +152,8 @@ let app = {
       app.resetGameBoard();
       app.drawBoard();
     }
-    console.log(actualRank);
-    console.log(currentCell);
+    //console.log(actualRank);
+    //console.log(currentCell);
   },
 
   turnRight: function () {
@@ -207,14 +212,14 @@ let app = {
 
   resetGameBoard: function () {
     let scriptText = document.querySelector("#userCode");
-    console.log(scriptText);
+    //console.log(scriptText);
     scriptText.value = "";
     let currentCell = document.querySelector(".cellCurrent");
-    console.log(currentCell);
+    //console.log(currentCell);
     currentCell.classList.remove("cellCurrent");
     let cells = document.querySelectorAll('.cell');
     for (let index = 0; index < cells.length; index++) {
-      console.log(cells[index]);
+      //console.log(cells[index]);
       cells[index].classList.remove('cellCurrent-right', 'cellCurrent-bottom', 'cellCurrent-left', 'cellCurrent-top', 'cellCurrent');
     }
     let startCell = document.querySelector(".cellStart");
@@ -261,13 +266,40 @@ let app = {
     // TODO display if the game is won or not
 
     let endCell = document.querySelector(".cellEnd");
-    console.log(endCell);
+    //console.log(endCell);
+    let scoreCount;
+    let loseCount;
+
     if (endCell.classList.contains("cellCurrent")) {
-      console.log("you win");
+      //console.log("you win");
+      app.resetGameBoard();
+      let board = document.querySelector('#board');
+      board.innerHTML = "";
+      app.drawBoard();
+
+      let scoreCount = parseInt((document.querySelector('#score').textContent), 10);
+      let score = document.querySelector('#score');
+      //console.log(document.querySelector('#score').value);
+      console.log(document.querySelector('#score').textContent);
+      console.log(scoreCount);
+      scoreCount += 1;
+      score.textContent = scoreCount;
+
 
     } else {
       console.log("you lose");
+      app.resetGameBoard();
+      let board = document.querySelector('#board');
+      board.innerHTML = "";
+      app.drawBoard();
+
+
+      loseCount += 1;
     }
+
+    //console.log(scoreCount + "win");
+    //console.log(loseCount + "losses")
+
 
   },
 };

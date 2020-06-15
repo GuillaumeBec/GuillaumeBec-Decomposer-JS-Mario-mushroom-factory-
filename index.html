@@ -19,15 +19,19 @@
             <h1> Super MARIO FINDER </h1>
         </div>
         <div class="sub-header">
-            <div class="label">Type Your code to allow the Rescue !</div>
+            <div class="label"> Write "forward" "left" or "right" on each line to bring mushrooms to the kingdom !</div>
+
             <button class="playButton"><i class="fas fa-volume-up"></i></button>
             <audio src="./assets/A Secret Course - Super Mario Sunshine.mp3"></audio>
             <button class="pauseButton"> <i class="fas fa-volume-mute"></i></button>
         </div>
         <div class="textarea"><img class="caracter" src="./assets/bowser_jr.png" alt="bowserjr">
-            <textarea id="userCode"></textarea></div>
-        <button id="launchScript">Lancer le script</button>
+            <textarea id="userCode">(initial direction is : "-->")</textarea></div>
+        <button id="launchScript">Launch your directions</button>
+
     </div>
+
+
 
     <div id="fails">
 
@@ -36,6 +40,12 @@
 
     <div id="board">
 
+    </div>
+
+    <div id="scoreCard">
+        <h3> Score : </h3>
+        <img class="shroom" src="./assets/1up_Mushroom_-_2D_art.svg" alt="">
+        x <span id="score">0</span>
     </div>
 
     <script src="js/multimedia.js"></script>

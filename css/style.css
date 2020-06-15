@@ -1,11 +1,16 @@
 body {
   padding: 1rem;
   font-family: Helvetica, sans-serif;
-  background-image: url('../assets/background.jpg');
+  background-image: url("../assets/background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position-y: 20vh;
+  background-position-y: 26.5vh;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .header {
@@ -83,12 +88,19 @@ body {
 }
 
 .cellEnd {
+  background-image: url(../assets/castle.png);
+  background-size: cover;
   background-color: blue;
 }
 
 .cellCurrent::after {
-  content: '>';
+  content: url(../assets/1up_Mushroom_-_2D_art.svg);
   color: red;
+}
+
+.cellCurrent::after img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .cellCurrent-top {
@@ -105,4 +117,20 @@ body {
 
 .cellCurrent-right {
   transform: rotate(0deg);
+}
+
+#scoreCard {
+  position: relative;
+  top: -27vh;
+  left: 70%;
+  width: fit-content;
+  font-weight: 700;
+  background-color: rgba(247, 221, 107, 0.911);
+  border: rgb(206, 171, 17) 6px solid;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#scoreCard img {
+  width: 90px;
 }
