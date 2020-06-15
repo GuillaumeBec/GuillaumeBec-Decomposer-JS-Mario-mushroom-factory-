@@ -2,8 +2,7 @@ let app = {
   init: function () {
     console.log("init");
     multimedia.init();
-    // TODO
-
+    // TESTS
     app.drawBoard();
 
     /*app.moveForward();
