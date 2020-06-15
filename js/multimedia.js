@@ -1,4 +1,5 @@
 const audio = new Audio('./assets/A Secret Course - Super Mario Sunshine.mp3');
+const notification = new Audio('./assets/smb_1-up.wav');
 
 let multimedia = {
 
@@ -19,11 +20,11 @@ let multimedia = {
         audio.play();
         audio.volume = 0.6;
         audio.loop = true;
-        console.log(audio);
+        //console.log(audio);
     },
 
     pause: function () {
         audio.pause();
-        console.log(audio);
+        //console.log(audio);
     }
 }

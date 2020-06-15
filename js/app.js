@@ -279,12 +279,10 @@ let app = {
 
       let scoreCount = parseInt((document.querySelector('#score').textContent), 10);
       let score = document.querySelector('#score');
-      //console.log(document.querySelector('#score').value);
-      console.log(document.querySelector('#score').textContent);
-      console.log(scoreCount);
       scoreCount += 1;
       score.textContent = scoreCount;
-
+      notification.play();
+      notification.volume(0.6);
 
     } else {
       console.log("you lose");
@@ -292,14 +290,7 @@ let app = {
       let board = document.querySelector('#board');
       board.innerHTML = "";
       app.drawBoard();
-
-
-      loseCount += 1;
     }
-
-    //console.log(scoreCount + "win");
-    //console.log(loseCount + "losses")
-
 
   },
 };
